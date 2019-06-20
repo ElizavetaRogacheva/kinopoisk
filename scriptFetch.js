@@ -14,21 +14,19 @@ function searchApi(evt) {
             return value.json();
         })
         .then(function(output){
+            console.log(output);
             let inner = '';
             output.results.forEach(function(item, i){
                 let nameItem = item.name || item.title;
                 let dateItem = item.first_air_date || item.release_date;
                 inner = inner + `
-                <div class = "col-12 col-md-4 col-xl-3">
+                <div class = "col-12 col-md-4 col-xl-3 item">
                     <img src='${imageUrl + item.poster_path}' alt='${nameItem}'>
                         ${nameItem}
                         ' Дата выхода: '
                         ${dateItem}
                 </div>
-                `
-                
-                '<div class = "col-3">' + nameItem + ' Дата выхода: ' + dateItem + '</div>';
-        });
+                `        });
         movie.innerHTML = inner;
         })
         .catch(function(reason){
